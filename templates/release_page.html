@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docker Releases</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        text-align: center;
+        max-width: 500px;
+        padding-top: 20px;
+      }
+      .release {
+        text-align: center;
+        padding-bottom: 20px;
+      }
+      .contents {
+        text-align: left;
+      }
+      .title {
+        text-align: center;
+        width: 100%;
+        border-bottom: 2px solid black;
+        padding-bottom: 15px;
+        font-size: 90px;
+      }
+      h2 {
+        color: powderblue;
+        font-size: 35px;
+        border-bottom: 2px solid black;
+        width: 100%;
+        padding-bottom: 7px;
+      }
+      h3 {
+        padding: 0;
+        margin: 0;
+        padding-bottom: 7px;
+        padding-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Docker Releases</h1>
+    <div class="container">
+        {% for release in all_releases %}
+	<div class="release">
+	  <h2>
+	    <a href='{{release[0][1]}}'>
+	    {{release[0][0]}}
+	    </a>
+	  </h2>
+	  <div class="contents">
+	    <h3>
+	      Latest Release:
+	      <a href='{{release[1][1]}}'>{{release[1][0]}}</a>
+	    </h3>
+	    <h3>
+	      Next Candidate:
+	      {% if release[2][1] %}
+	      <a href='{{release[2][1]}}'>{{release[2][0]}}</a>
+	      {% else %}
+	      {{release[2][0]}}
+	      {% endif %}
+	    </h3>
+	  </div>
+	</div>
+        {% endfor %}
+    </div>
+    <p>Last updated: {{updated_at}}</p>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
